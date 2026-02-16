@@ -36,6 +36,12 @@ def play_game():
         display_game_state(mistakes, secret_word, guessed_letters)
 
         guess = input("Guess a letter: ").lower()
+        valid_characters = "abcdefghijklmnopqrstuvwxyz"
+
+        # Prüfung: Ist die Länge ungleich 1 ODER ist das Zeichen NICHT in der Liste?
+        if len(guess) != 1 or guess not in valid_characters:
+            print("Invalid input! Please enter a single letter from a-z.")
+            continue
 
         # 1. Prüfen ob schon geraten
         if guess in guessed_letters:
@@ -72,4 +78,10 @@ def play_game():
 
 
 if __name__ == "__main__":
-    play_game()
+    while True:
+        play_game()
+
+        again = input("Willst du nochmal spielen? (j/n): ").lower()
+        if again != "j":
+            print("Danke fürs spielen! Tschüss.")
+            break
