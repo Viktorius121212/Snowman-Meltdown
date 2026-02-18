@@ -1,7 +1,7 @@
 from ascii_art import STAGES
 import random
 
-# List of secret words
+# secret words
 WORDS = ["python", "git", "github", "snowman", "meltdown"]
 
 
