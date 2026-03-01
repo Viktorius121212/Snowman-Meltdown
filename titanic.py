@@ -1,9 +1,10 @@
+"""Module for ship data analysis."""
 from collections import Counter
 from load_data import load_data
 
 
 def main():
-    """Hauptfunktion zur Steuerung des Titanic CLI."""
+    """Main CLI function."""
     all_data = load_data()
     ships = all_data.get('data') or []
 
@@ -25,7 +26,9 @@ def main():
             continue
 
         if command == "show_countries":
-            countries = sorted(list(set(s["COUNTRY"] for s in ships if "COUNTRY" in s)))
+            countries = sorted(list(set(
+                ship["COUNTRY"] for ship in ships if "COUNTRY" in ship
+            )))
             for country in countries:
                 print(country)
             continue
@@ -34,7 +37,10 @@ def main():
             if args:
                 try:
                     anzahl = int(args[0])
-                    counts = Counter(s["COUNTRY"] for s in ships if "COUNTRY" in s).most_common(anzahl)
+                    # Zeilenumbruch für Pylint Konformität
+                    counts = Counter(
+                        ship["COUNTRY"] for ship in ships if "COUNTRY" in ship
+                    ).most_common(anzahl)
                     for country, count in counts:
                         print(f"{country}: {count}")
                 except ValueError:
